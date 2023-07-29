@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카페 포스기</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <link href="/resources/css/reset.css" rel="stylesheet">
+    <!---style 지정 각자 실습-->
+    <style>
+
+    </style>
+    <script>
+        $(loadedHandler);
+        function loadedHandler() {
+            //event 등록    
+            $('.c').on("blur", cntBlurHandler);
+            $("[type=button]").on("click", calcClickHandler);
+        }
+        //각종 기능 함수들 //함수이름 작성함 cntBlurHandler
+        // function cntBlurHandler(e) {
+        //     // console.log(this);
+        //     // console.log(event.target); //event.taeget == this 똑같음
+        //     // console.log(event);
+        //     //각자 실습하기(공백) namber 꼭 써야함
+        //     console.log($(this).parent().prev().text())     //this의 형님을 찾겠다.제이쿼리를 통해($)
+        //     console.log($(this).val());
+        //     $(this).parent().next().children('input.p').val(
+        //         $(this).parent().prev().text()
+        //         *
+        //         $(this).val()
+        //     );  //수량을 적으면 합계에 값이 나옴.
+
+        // 각종 기능 함수들
+        function cntBlurHandler(e) {
+            // 메뉴마다 합계가격
+            $(this).parent().next().children('input.p').val(
+                $(this).parent().prev().text() * $(this).val());
+            updateTotal();
+        }
+        function calcClickHandler(e) {
+            $(".c.in").each(function (idx, item) {
+                //this = item
+                console.log(item);
+                // 메뉴마다 합계가격
+                $(this).parent().next().children('input.p').val(
+                    $(this).parent().prev().text() * $(this).val());
+            });
+            updateTotal();
+        }
+        function updateTotal() {
+            //합계부분 
+            //class=c와 class=p를 사용
+            var sum = 0;     //sum은 초기값을 넣어서 number
+            $(".c.in").each(function (idx, item) {                    //(idx, item)인데 item이 this랑 동일 굳이 item을 안 써도됨
+                //each - for문은 대신함. event에 handler 를 등록함
+                //each function 에서의 this 사용시 위 thid와 엇갈림.
+                //console.log(price);
+                //item =this
+                console.log(item);
+                //if(idx != ($(".c").length-1)){
+                var i = Number($(item).val());
+                if (isNaN(i)) {
+                    i = 0;
+                }
+                sum += i;
+
+            });
+            console.log(sum);
+            $("#cTotalCnt").val(sum);
+
+            sum = 0;
+
+            // 합계 
+            $(".p").each(function (idx, item) {
+                console.log(item);
+                if (idx != ($(".p").length - 1)) {
+                    // Number() 대신 * 1 로 숫자형태변경
+                    var i = $(item).val() * 1;
+                    if (isNaN(i)) {
+                        i = 0;
+                    }
+                    sum += i;
+                }
+            });
+            console.lod(sum);
+            $("#cTotalprice").val(sum);
+        }
+
+
+                            //수량을 입력하고 다른걸 클릭하면(포커스 바뀔 때) 값을 나오게 함
+                            //합계 부분에 타이핑x 걍 display임 //이벤트 총 5개 등록(수량1 수량2 수량3 계산하기 초기화)
+                            //수량 1.2.3은 똑같은 이벤트가 걸림
+                            //function(event) => 클릭된 시점에 인덱스와 아이템을 가져올 수 있음      
+
+    </script>
+</head>
+
+<body>
+    <form>
+        <table border="1"> <!---css로 공간 넓힌다-->
+            <tr>
+                <th>메뉴</th>
+                <th>가격</th>
+                <th>수량</th>
+                <th>합계</th>
+            </tr>
+            <tr>
+                <td>아메리카노</td>
+                <td>2500</td>
+                <td><input type="text" name="c1" class="c in"></td> 
+                <td><input type="text" name="c1Price" class="p" readonly></td>
+                <!-- this에다가 name에 값을 넣어야 한다 -->
+            </tr>
+            <tr>
+                <td>라떼</td>
+                <td>3000</td>
+                <td><input type="text" name="c2" class="c in"></td>
+                <td><input type="text" name="c2Price" class="p" readonly></td>
+            </tr>
+            <tr>
+                <td>생강라떼</td>
+                <td>4500</td>
+                <td><input type="text" name="c3" class="c in"></td>
+                <td><input type="text" name="c3Price" class="p" readonly></td>
+            </tr>
+            <tr>
+                <td>딸기라떼</td>
+                <td>4500</td>
+                <td><input type="text" name="c4" class="c in"></td>
+                <td><input type="text" name="c4Price" class="p" readonly></td>
+            </tr>
+            <tr>
+                <th>합계</th>
+                <th></th>
+                <th><input type="text" name="cTotalCnt" id="cTotalCnt" class="c" readonly></th>
+                <th><input type="text" name="cTotalPrice" id="cTotalPrice" class="p" readonly></th>
+                <!-- 합계부분 -->
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <input type="button" value="계산하기">
+                    <input type="reset">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>
