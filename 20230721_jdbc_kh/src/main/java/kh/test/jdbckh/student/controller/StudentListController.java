@@ -58,4 +58,8 @@ public class StudentListController extends HttpServlet {
 //		doGet(request, response);
 //	}
 
+//	//TODO 학생 상세 정보 가져오기
+//	request.getRequestDispatcher("/WEB-INF/view/student/get.jsp").forward(request, response);	
+	
+	
 }

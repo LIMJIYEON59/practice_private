@@ -19,15 +19,13 @@ public class StudentGetController extends HttpServlet {
      */
     public StudentGetController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO 학생 상세 정보 가져오기
-		request.getRequestDispatcher("/WEB-INF/view/student/get.jsp").forward(request, response);
+
 	}
 
 	/**
