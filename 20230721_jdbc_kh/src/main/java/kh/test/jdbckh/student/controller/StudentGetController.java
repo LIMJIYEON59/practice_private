@@ -25,7 +25,11 @@ public class StudentGetController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// 1.전딜받은 parameter 읽어내기
+		String studentNo = request.getParameter("sno");
+		System.out.println(studentNo);
+		// 2. 전달받은 데이터를 활용해서 DB학생 상세 정보 가져오기	//Dao의 메소드 하나를 호출한다.
+		request.getRequestDispatcher("/WEB-INF/view/student/get.jsp").forward(request, response);
 	}
 
 	/**

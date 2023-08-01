@@ -13,6 +13,26 @@ import kh.test.jdbckh.student.model.vo.StudentVo;
 
 public class StudentDao {
 	
+	//DB에서 tb_student 테이블의 전달받은 학번을 통해 학생1명의 상세정보를 얻어옴
+		//  () <- 이 파라메타에 학번에 관한 내용이 들어가있어야 한다. 리턴 해줘야함(혼자 먹고 치우지 않으니)
+			// 학생 전체 정보 = StudentVo
+	public StudentVo selectOneStudent(String studentNo) {
+		String query
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 이름:selectListStudent 혹은 StudentList등등 룰이 있음
 	// DB에서 tb_student 테이블의 있는 모든 내용을 읽어서 꺼냄
 	
