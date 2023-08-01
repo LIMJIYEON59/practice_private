@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kh.test.jdbckh.student.model.dao.StudentDao;
+import kh.test.jdbckh.student.model.vo.StudentVo;
+
 /**
  * Servlet implementation class StudentGetController
  */
@@ -15,7 +18,7 @@ public class StudentGetController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
-     * @see HttpServlet#HttpServlet()
+     * @see HttpServlet#HttpServlet() 
      */
     public StudentGetController() {
         super();
@@ -29,6 +32,8 @@ public class StudentGetController extends HttpServlet {
 		String studentNo = request.getParameter("sno");
 		System.out.println(studentNo);
 		// 2. 전달받은 데이터를 활용해서 DB학생 상세 정보 가져오기	//Dao의 메소드 하나를 호출한다.
+		StudentDao dao = new StudentDao();
+		StudentVo vo = dao.selectOneStudent(studentNo); //값을 담을 수 있도록 변수 선언
 		request.getRequestDispatcher("/WEB-INF/view/student/get.jsp").forward(request, response);
 	}
 

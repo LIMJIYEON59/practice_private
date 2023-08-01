@@ -14,10 +14,60 @@ import kh.test.jdbckh.student.model.vo.StudentVo;
 public class StudentDao {
 	
 	//DB에서 tb_student 테이블의 전달받은 학번을 통해 학생1명의 상세정보를 얻어옴
-		//  () <- 이 파라메타에 학번에 관한 내용이 들어가있어야 한다. 리턴 해줘야함(혼자 먹고 치우지 않으니)
+			//  () <- 이 파라메타에 학번에 관한 내용이 들어가있어야 한다. 리턴 해줘야함(혼자 먹고 치우지 않으니)
 			// 학생 전체 정보 = StudentVo
+	//순서: sysout() -> 리턴값 -> 리턴 -> query작성 ->DB연결작성
 	public StudentVo selectOneStudent(String studentNo) {
-		String query
+		System.out.println("DAO selectOneStudent() arg:"+ studentNo);	//studentNo의 값이 뭔지 모르니 뿌리겠다.
+
+		StudentVo result = null;
+		String query = "select * from tb_student where student_no = " + "'"+studentNo+"'"; //쿼리문 적기 String으로 적겠다. (where)//+다음에는 위에 ()괄호 안에 있는 값을 넣어주면된다.
+																					//여기서 studentNo는 결과값이다. = 'A031341' //sql문은 결과값에 작은따옴표를 적어준다.
+																					// pk("")를 기준으로 where절 같은걸( = ) 찾아준다 그럼 (*) 행은 단일행으로밖에 안나온다.	 						
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;	// select문이라면 ResultSet이 생성된다.
+		
+		// finally는 생성순서 반대로 채워넣는다.
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");	//Class를 적어준다(외워라)
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "kh", "kh");	//conn에 값을 넣는다 총 3개의 값이 들어가는데 (경로,계정명,비번); 
+																										//오라클 내부접속은 8090이 아니라 1521이다.
+//확인완료																									
+//			if(conn == null) {
+//				System.out.println("연결실패");				
+//			}else {
+//				System.out.println("연결성공");
+//			}
+			
+			// conn으로부터 pre를 만드는데 안에 쿼리문을 넣고 시작한다 //쿼리문은 위에있음 그 값이 여기 담긴거임
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery(); //실행을 시키겠다.
+			if(rset.next()) {				//while 동작시킬필요없음. query가 단일행으로 나올거기 때문에
+				result = new StudentVo();	// result new 생성해주기
+				result.setAbsenceYn(rset.getString("Absence_Yn"));		// 이제 하나씩 값을 넣겠다 return될 Vo에다가 넣을거다 // ""컬럼명
+				result.setCoachProfessorNo(rset.getString("Coach_Professor_No"));
+				result.setDepartmentNo(rset.getString("Department_No"));
+				result.setEntranceDate(rset.getDate("Entrance_Date"));
+				result.setStudentAddress(rset.getString("Student_Address"));
+				result.setStudentName(rset.getString("StudentName"));
+				result.setStudentNo(rset.getString("Student_No"));
+				result.setStudentSsn(rset.getString("Student_Ssn"));		
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace(); //e.prin...적는다.
+		}finally { 		//거꾸로 해줌 // 근데 그 전에 try-catch문 작성
+			try {
+				if(rset!=null) rset.close(); //nullpointexception 오류 방지
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		System.out.println(result);
+		return result;
 	}
 	
 	
