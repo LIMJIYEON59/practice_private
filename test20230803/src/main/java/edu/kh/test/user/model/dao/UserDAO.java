@@ -19,7 +19,7 @@ public class UserDAO {
 //		USER_ID   NOT NULL VARCHAR2(50) 
 //		USER_NAME NOT NULL VARCHAR2(50) 
 //		USER_AGE  NOT NULL NUMBER  
-		//쿼리 문 작성	//USER_NO를 가지고 왔으니 where절에다 적고 =? 를 마지막으로 적는다.
+		//쿼리 문 작성(쿼리문은 문자열)	//USER_NO를 가지고 왔으니 where절에다 적고 =? 를 마지막으로 적는다.
 		String query = "select USER_NO, USER_ID, USER_NAME, USER_AGE from TB_USER where USER_NO=?"; 
 		//선언
 		PreparedStatement pstmt = null;

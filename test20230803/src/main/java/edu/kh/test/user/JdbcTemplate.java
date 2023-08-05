@@ -72,7 +72,7 @@ public class JdbcTemplate {
 	// 객체 Connection 
 	public static void commit(Connection conn) {
 		try {
-			if (conn != null) conn.close();
+			if (conn != null) conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
