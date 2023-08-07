@@ -20,7 +20,7 @@ public class UserDAO {
 //		USER_NAME NOT NULL VARCHAR2(50) 
 //		USER_AGE  NOT NULL NUMBER  
 		//쿼리 문 작성(쿼리문은 문자열)	//USER_NO를 가지고 왔으니 where절에다 적고 =? 를 마지막으로 적는다.
-		String query = "select USER_NO, USER_ID, USER_NAME, USER_AGE from TB_USER where USER_NO=?"; 
+		String query = "select USER_NO, USER_ID, USER_NAME aaa, USER_AGE from TB_USER where USER_NO=?"; 
 		//선언
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;	//select문이라(위에 파랑이 봐라) resultset 적는데 insert문이면 적지 않는다.
@@ -29,7 +29,7 @@ public class UserDAO {
 			pstmt.setInt(1, userNo); //pstmt에 ?가 있으니 설정을 해줘야 한다. //setInt이다 위에(int userNo) 값을 여기 채워줌
 			rs = pstmt.executeQuery(); //실행을 시킨다 rs로 한다.
 			if(rs.next()) {			   //단일행이라 여기에 while을 안 쓴다.
-				result = new UserDTO(rs.getInt("userNo"), rs.getString("USER_ID"), rs.getString("USER_NAME"), rs.getInt("USER_AGE")); //result에 값을 채울거다 
+				result = new UserDTO(rs.getInt("USER_NO"), rs.getString("USER_ID"), rs.getString("USER_NAME"), rs.getInt("USER_AGE")); //result에 값을 채울거다 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

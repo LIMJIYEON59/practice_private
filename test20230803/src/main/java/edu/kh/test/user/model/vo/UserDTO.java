@@ -2,7 +2,7 @@ package edu.kh.test.user.model.vo;
 
 public class UserDTO {
 //	USER_NO   NOT NULL NUMBER       
-//	USER_ID   NOT NULL VARCHAR2(50) 
+//	USER_ID   NOT NULL VARCHAR2(50)
 //	USER_NAME NOT NULL VARCHAR2(50) 
 //	USER_AGE  NOT NULL NUMBER  
 	

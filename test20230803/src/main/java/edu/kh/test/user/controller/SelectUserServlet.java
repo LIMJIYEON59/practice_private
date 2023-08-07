@@ -21,6 +21,7 @@ public class SelectUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userNoStr = request.getParameter("userNo");	//userNo가 String 모양이고 이걸 이제 DB에 가지고 가야한다.	
 		int userNo = 0;
+		
 		try {
 			userNo = Integer.parseInt(userNoStr);				
 		}catch (NumberFormatException e) {
@@ -28,7 +29,7 @@ public class SelectUserServlet extends HttpServlet {
 	
 		
 		UserDTO result = service.selectOne(userNo);	//service.selectOne을 호출한다.	// return 값이 UserDTO이다.
-		if(result != null) {	// 만약 list 면 (result.size != 0) 형태로 적어줘야 한다.
+		if(result != null) {	// 만약 list 면 (result.size() != 0) 형태로 적어줘야 한다.
 			request.setAttribute("udto", result);
 			request.getRequestDispatcher("/WEB-INF/views/searchSuccess.jsp").forward(request, response); //경로 적어주기
 		}else {
@@ -42,5 +43,35 @@ public class SelectUserServlet extends HttpServlet {
 //	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		doGet(request, response);
 //	}
-
+	
 }
+
+//@WebServlet("/selectUser")
+//
+//public class SelectUserServlet extends HttpServlet {
+//	private static final long serialVersionUID = 1L;
+//
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		String userId = request.getParameter("userId");
+//
+//		try {
+//			User user = new UserService().selectUser(userId);
+//			
+//		if(user != null) {
+//	
+//			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/searchSuccess.jsp");
+//			request.setAttribute("user", user);
+//			view.forward(request, response);
+//			
+//		}else {
+//			request.getRequestDispatcher("/WEB-INF/views/searchFail.jsp").forward(request, response);
+//		}
+//		
+//		} catch (Exception e) {	
+//			e.printStackTrace();
+
+	
+
+
+
+
