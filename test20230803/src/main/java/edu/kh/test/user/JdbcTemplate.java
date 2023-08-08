@@ -14,13 +14,11 @@ public class JdbcTemplate {
 		Connection conn = null;						
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");	// 이걸 로드한다.
-			try {
 				//url,사용자 이름, 비번을 사용하여 DB에 연결한다.
-				conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "abc", "abc");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "abc", "abc");
 		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		if(conn != null) {
