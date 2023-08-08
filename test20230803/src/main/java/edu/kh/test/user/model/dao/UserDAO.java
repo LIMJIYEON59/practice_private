@@ -28,8 +28,13 @@ public class UserDAO {
 			pstmt = conn.prepareStatement(query);	//conn으로부터 p(쿼리)를 넣어준다.	//conn으로부터 prepareStatement를 꺼내오고 qyery문을 가진채 보낸다. // 보낸다음 받을 자료형이 필요한데 그게 pstmt이다.
 			pstmt.setInt(1, userNo); //pstmt에 ?가 있으니 설정을 해줘야 한다. //setInt이다 위에(int userNo) 값을 여기 채워줌
 			rs = pstmt.executeQuery(); //실행을 시킨다 rs로 한다.
+
 			if(rs.next()) {			   //단일행이라 여기에 while을 안 쓴다.	//next -> 한 행을 읽을게 있는가~
 				result = new UserDTO(rs.getInt("userNo"), rs.getString("USER_ID"), rs.getString("USER_NAME"), rs.getInt("USER_AGE")); //result에 값을 채울거다 
+
+			if(rs.next()) {			   //단일행이라 여기에 while을 안 쓴다.
+				result = new UserDTO(rs.getInt("USER_NO"), rs.getString("USER_ID"), rs.getString("USER_NAME"), rs.getInt("USER_AGE")); //result에 값을 채울거다 
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
