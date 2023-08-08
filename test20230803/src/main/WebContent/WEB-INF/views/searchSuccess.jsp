@@ -22,6 +22,6 @@
 		<td>${udto.userAge }</td>
 	</tr>
 </table>
-<a href="${pageContext.request.contextPath }/">메인페이지로 돌아가기</a>  <!-- 경로 작성 -->
+<a href="${pageContext.request.contextPath }/">메인페이지로 돌아가기</a>  <!-- 경로 작성 -->	<!-- 위에서 뿌린 후 다시 main으로 가고싶을 때 이렇게 적어준다. -->
 </body>
 </html>
