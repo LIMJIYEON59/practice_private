@@ -32,9 +32,6 @@ public class UserDAO {
 			if(rs.next()) {			   //단일행이라 여기에 while을 안 쓴다.	//next -> 한 행을 읽을게 있는가~
 				result = new UserDTO(rs.getInt("userNo"), rs.getString("USER_ID"), rs.getString("USER_NAME"), rs.getInt("USER_AGE")); //result에 값을 채울거다 
 
-			if(rs.next()) {			   //단일행이라 여기에 while을 안 쓴다.
-				result = new UserDTO(rs.getInt("USER_NO"), rs.getString("USER_ID"), rs.getString("USER_NAME"), rs.getInt("USER_AGE")); //result에 값을 채울거다 
-
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

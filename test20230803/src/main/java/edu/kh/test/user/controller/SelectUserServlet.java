@@ -32,11 +32,7 @@ public class SelectUserServlet extends HttpServlet {
 		UserDTO result = service.selectOne(userNo);	//service.selectOne을 호출한다.	// return 값이 UserDTO이다.	//result 결과물을 받아서 service를 호출한다.(no를 가지고) selectone(한개만 꺼낸다)
 		if(result != null) {	// 만약 list 면 (result.size != 0) 형태로 적어줘야 한다.
 			request.setAttribute("udto", result);	//이름이 udto인 놈에 result의 갑을 채워줌 //그리고 밑으로 이동을 하는데
-			request.getRequestDispatcher("/WEB-INF/views/searchSuccess.jsp").forward(request, response); //jsp로 이동!(화면을 보여줌 응답을 하겠다.)
-
-		UserDTO result = service.selectOne(userNo);	//service.selectOne을 호출한다.	// return 값이 UserDTO이다.
-		if(result != null) {	// 만약 list 면 (result.size() != 0) 형태로 적어줘야 한다.
-			request.setAttribute("udto", result);
+		
 			request.getRequestDispatcher("/WEB-INF/views/searchSuccess.jsp").forward(request, response); //경로 적어주기
 
 		}else {
