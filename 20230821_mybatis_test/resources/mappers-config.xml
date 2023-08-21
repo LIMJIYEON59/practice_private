@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<!-- 별칭 등록 해야함 -->
+	<settings>
+		<setting name="" value=""/>
+	</settings>
+	<typeAliases>
+		<typeAlias type=""/>
+	</typeAliases>
+	<environments default="">
+		<environment id="">
+			<transactionManager type=""></transactionManager>
+			<dataSource type="">
+				<property name="" value=""/>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers></mappers>
+</configuration>

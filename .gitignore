@@ -6,6 +6,8 @@ build/
 properties/
 .metadata/
 Servers/
+settings/
+classpath/
 
 
 
