@@ -6,8 +6,9 @@ build/
 properties/
 .metadata/
 Servers/
-settings/
-classpath/
+#.settings/
+#.classpath
+target/
 
 
 
